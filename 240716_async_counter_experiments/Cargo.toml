@@ -1,0 +1,12 @@
+[package]
+name = "async-counter-experiments"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.34.0", features = [
+    "rt-multi-thread",
+    "time",
+    "macros",
+    "signal",
+] }
