@@ -1,0 +1,111 @@
+---------------
+Why can a variable of type usize be passed to a function without losing ownership but not a variable of type String?
+---------------
+
+Because usize implements copy. Types that implement the copy trait are always copied
+
+########################################################################################################################
+
+---------------
+&str is a reference to data allocated where? (Kind of a trick question)
+---------------
+1. **Static Data Segment:**
+if the `&str` points to a string literal its stored in the binarys read only data.
+
+2. **Heap:**
+if the `&str` is derived from a `String` (`let s: String = String::from("Hello");`) the actual data resides on the heap.
+
+(if you obtained your &str from a String, then it will point to the heap. If you obtained your &str from a stack-allocated array of bytes, for example, then it will point to the stack.)
+
+########################################################################################################################
+
+---------------
+What’s a lifetime?
+---------------
+
+The scope in which a value is valid and accessible
+
+A lifetime is a construct the compiler (or more specifically, its borrow checker) uses to ensure all borrows are valid.
+While lifetimes and scopes are often referred to together, they are not the same.
+########################################################################################################################
+
+---------------
+What’s a static reference?
+---------------
+
+
+
+########################################################################################################################
+
+---------------
+What does static mean as a trait bound?
+---------------
+
+indicates that the data pointed to by the reference lives for the remaining lifetime of the running program. It can still be coerced to a shorter lifetime
+
+########################################################################################################################
+
+---------------
+If I have a &’static str why is it that I can alias it but have the type of the alias be a &str.
+---------------
+
+Since 'static outlives everything, the alias can have any lifetime.
+
+########################################################################################################################
+
+---------------
+How does sub-typing work with respect to lifetimes?
+---------------
+
+if one lifetime a outlives the other b that means b is a suptype of a
+
+
+
+########################################################################################################################
+
+---------------
+How do you move a value from the stack onto the heap?
+---------------
+
+by wrapping it in a box 
+
+########################################################################################################################
+
+---------------
+Why can I pass a &Box<T> into functions that expect an &T?
+---------------
+
+
+
+########################################################################################################################
+
+---------------
+What do you reach for when you want mutability without passing around a mutable reference?
+---------------
+
+
+
+########################################################################################################################
+
+---------------
+What do you reach for when you want multiple owners of a value in a single-threaded context? Multi-threaded context?
+---------------
+
+
+
+########################################################################################################################
+
+---------------
+What are the trade-offs of defining a function generic over T constrained by trait Foo vs. defining the function that excepts a dynamic trait object that implements Foo?
+---------------
+
+
+
+########################################################################################################################
+
+---------------
+Do you know what Rust is named after?
+---------------
+
+
+########################################################################################################################
