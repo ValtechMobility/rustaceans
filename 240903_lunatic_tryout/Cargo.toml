@@ -1,0 +1,9 @@
+[package]
+name = "rustaceans"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+flume = "0.11.0"
+lunatic = "0.14.1"
+serde = "1.0.209"
