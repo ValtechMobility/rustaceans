@@ -12,7 +12,7 @@ impl Formatter for SimpleFormatter {
     }
 }
 
-fn apply_format<'a, F>(formatter: F) -> impl for<'a> Fn(&'a str) -> String
+fn apply_format<F>(formatter: F) -> impl Fn(String) -> String
 where
     F: Formatter,
 {
@@ -24,7 +24,7 @@ fn main() {
 
     let format_fn = apply_format(formatter);
 
-    let s1 = "Hello";
+    let s1 = "Hello".to_string();
 
     let s2 = String::from("World");
 
@@ -34,5 +34,5 @@ fn main() {
     } */
 
     println!("{}", format_fn(s1));
-    println!("{}", format_fn(&s2));
+    println!("{}", format_fn(s2));
 }

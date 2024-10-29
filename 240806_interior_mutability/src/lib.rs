@@ -1,5 +1,3 @@
-use std::sync::Mutex;
-
 pub trait Messenger {
     fn send(&self, msg: &str);
 }
@@ -42,6 +40,7 @@ where
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::sync::Mutex;
 
     struct MockMessenger {
         sent_messages: Mutex<Vec<String>>,
@@ -57,7 +56,7 @@ mod tests {
 
     impl Messenger for MockMessenger {
         fn send(&self, message: &str) {
-            let mut one = self.sent_messages.lock().unwrap();
+            let one = self.sent_messages.lock().unwrap();
             drop(one);
             let mut two = self.sent_messages.try_lock().unwrap();
             //one.push(String::from(message));
