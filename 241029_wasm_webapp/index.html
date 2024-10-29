@@ -4,19 +4,45 @@
     <title>Factorial Calculator</title>
 </head>
 <body>
+    <script type="module">
+        import init , {get_fourty_two}from "./pkg/hello_wasm.js";
+        
+        init().then(async () => {
+
+            console.log(await get_fourty_two());
+
+            // window.processUser = () => {
+            //     const username = document.querySelector(".serdejson input").value;
+            //     const role = document.querySelector(".serdejson select").value;
+            //     console.log("HTML>> Username is:", username, "Role is:", role);
+            //     const user = new User(username, 1, role)
+            //     const result = check_first_user(user)
+
+            //     console.log("HTML>> Result is:", result);
+            // } 
+        });
+    </script>
+
     <h1>Factorial Calculator</h1>
     <input type="number" id="numberInput" placeholder="Enter a number">
     <button onclick="calculateFactorial()">Calculate</button>
     <p>Result: <span id="result"></span></p>
-    <script type="module">
-        import init, { factorial } from "./pkg/hello_wasm.js";
-        init().then(() => {
-            window.calculateFactorial = () => {
-                const input = document.getElementById('numberInput').value;
-                const result = factorial(parseInt(input));
-                document.getElementById('result').innerText = result;
-            };
-        });
-    </script>
+    <input  id="uppercase_input" type="text" placeholder="Input a string" />
+
+    <p>
+        Result:
+        <span id="uppercase_str"></span>
+    </p>
+    <button onclick="toUppercase()">UPPERCASE ME!</button>
+
+    <div class="serdejson">
+        <input type="text" placeholder="Username">
+        <select>
+            <option value="Admin">Admin</option>
+            <option value="User">User</option>
+        </select>
+
+        <button onclick="processUser()">Process User</button>
+    </div>
 </body>
 </html>
