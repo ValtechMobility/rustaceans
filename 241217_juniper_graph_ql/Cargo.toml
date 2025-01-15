@@ -1,0 +1,13 @@
+[package]
+name = "juniper_graph_ql"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+axum = { version = "0.6.20", features = ["headers"] }
+tokio = { version = "1.0", features = ["full"] }
+juniper = "0.13.1"
+serde = "1.0"
+serde_derive = "1.0"
+serde_json = "1.0"
+juniper_axum = "0.1.1"
