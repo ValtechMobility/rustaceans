@@ -45,9 +45,31 @@ impl ShaderProgram {
         gl::UseProgram(self.id);
     }
 
-    pub unsafe fn get_attrib_location(&self, attrib: &str) -> Result<GLuint, ShaderError> {
+    pub unsafe fn get_attrib_location(&self, attrib: &str) -> Result<GLint, ShaderError> {
         let attrib = CString::new(attrib).map_err(|_| ShaderError::NulError)?;
-        Ok(gl::GetAttribLocation(self.id, attrib.as_ptr()) as GLuint)
+        let location = gl::GetAttribLocation(self.id, attrib.as_ptr());
+        if location == -1 {
+            println!(
+                "Warning: Attribute '{}' not found in shader program",
+                attrib.to_string_lossy()
+            );
+            return Err(ShaderError::AttributeNotFound);
+        }
+        Ok(location)
+    }
+
+    pub unsafe fn set_uniform_1i(&self, name: &str, value: i32) -> Result<(), ShaderError> {
+        let name = CString::new(name).map_err(|_| ShaderError::NulError)?;
+        let location = gl::GetUniformLocation(self.id, name.as_ptr());
+        if location == -1 {
+            println!(
+                "Warning: Uniform '{}' not found in shader program",
+                name.to_string_lossy()
+            );
+            return Err(ShaderError::UniformNotFound);
+        }
+        gl::Uniform1i(location, value);
+        Ok(())
     }
 }
 

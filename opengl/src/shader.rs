@@ -8,6 +8,9 @@ pub enum ShaderError {
     CompilationError,
     LinkingError,
     NulError,
+    TextureLoadError,
+    AttributeNotFound,
+    UniformNotFound,
 }
 
 pub struct Shader {

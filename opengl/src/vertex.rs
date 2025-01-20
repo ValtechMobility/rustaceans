@@ -1,9 +1,10 @@
 use gl::types::{GLint, GLsizeiptr, GLuint};
 
 pub type Pos = [f32; 2];
-pub type Color = [f32; 3];
+pub type TextureCoords = [f32; 2];
 
-pub struct Vertex(pub Pos, pub Color);
+#[repr(C)]
+pub struct Vertex(pub Pos, pub TextureCoords);
 
 #[derive(Debug)]
 pub struct VertexArray {
@@ -23,20 +24,25 @@ impl VertexArray {
 
     pub unsafe fn set_attribute<V: Sized>(
         &self,
-        attrib_pos: GLuint,
+        attrib_pos: GLint,
         components: GLint,
         offset: GLuint,
     ) {
+        if attrib_pos < 0 {
+            println!("Warning: Invalid attribute location {}", attrib_pos);
+            return;
+        }
+
         self.bind();
         gl::VertexAttribPointer(
-            attrib_pos,
+            attrib_pos as GLuint,
             components,
             gl::FLOAT,
             gl::FALSE,
             std::mem::size_of::<V>() as GLint,
             offset as *const _,
         );
-        gl::EnableVertexAttribArray(attrib_pos);
+        gl::EnableVertexAttribArray(attrib_pos as GLuint);
     }
 }
 
