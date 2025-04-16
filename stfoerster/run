@@ -1,0 +1,28 @@
+#!/bin/bash
+set -eo pipefail
+ROOTPATH="project"
+CONTAINER_NAME="rust-dev"
+
+for i in "$@"; do
+  case $i in
+  -r | --run)
+    RUNMODUS=1
+    shift
+    ;;
+  -nt | --network)
+    NETWORKMODUS=1
+    shift
+    ;;
+  esac
+done
+
+if [[ $RUNMODUS != 1 ]]; then
+    PARAM=" -it"
+    SH=" bash"
+fi
+if [[ $NETWORKMODUS == 1 ]]; then
+    NETWORKPARAM=" --network nats-net"
+fi
+
+docker build -t $CONTAINER_NAME -f Dockerfile .
+docker run$NETWORKPARAM --rm$PARAM -v $PWD/$ROOTPATH:/usr/src/app $CONTAINER_NAME$SH

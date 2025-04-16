@@ -1,0 +1,22 @@
+[package]
+name = "prj"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+rand = { version = "0.8", features = ["std"] }
+rustyline = "13"
+dotenvy = "0.15"
+
+fern = "0.6"
+chrono = "0.4"
+log = "0.4"
+
+chrono-tz = "0.8"
+
+shell-words = "1.1"
+
+async-nats = "0.31"
+tokio = { version = "1", features = ["full"] }
+futures = "0.3"
+
