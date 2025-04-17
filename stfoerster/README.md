@@ -66,4 +66,6 @@ docker remove nats-server
 
 ### starten
 
-erst ```./server``` für NATS samt netzwerk, dann ```./run -nt``` und in der cmd dann ```cargo run``` 
+erst ```./server``` für NATS samt netzwerk, dann ```./run -nt``` und in der cmd dann ```cargo run```
+
+nur tests laufen lassen ohne NATS, etc. ```./run -r```
