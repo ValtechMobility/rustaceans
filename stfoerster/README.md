@@ -64,3 +64,6 @@ docker network rm nats-net
 
 docker remove nats-server
 
+### starten
+
+erst ```./server``` für NATS samt netzwerk, dann ```./run -nt``` und in der cmd dann ```cargo run``` 

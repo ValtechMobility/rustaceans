@@ -8,3 +8,5 @@
 .idea/
 
 **/jetstream
+**/history.txt
+**/local.log
