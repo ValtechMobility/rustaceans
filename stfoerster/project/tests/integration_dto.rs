@@ -1,13 +1,14 @@
 use std::fs::File;
 use std::io::{Write, BufReader};
 use prj::dto::{Benutzer, Status};
+use uuid::Uuid;
 
 #[test]
 fn test_writeDtoToHdd() {
 
     // Datenstruktur anlegen
     let user = Benutzer {
-        id: 1,
+        id: Uuid::new_v4(),
         name: "Stephan".into(),
         email: "stephan@example.com".into(),
         ist_admin: true,

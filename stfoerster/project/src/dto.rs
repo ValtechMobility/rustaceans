@@ -1,4 +1,5 @@
 use serde::{Serialize, Deserialize};
+use uuid::Uuid;
 
 #[derive(Debug, Serialize, Deserialize, PartialEq)]
 pub enum Status {
@@ -8,7 +9,7 @@ pub enum Status {
 
 #[derive(Debug, Serialize, Deserialize)]
 pub struct Benutzer {
-    pub id: u32,
+    pub id: Uuid,
     pub name: String,
     pub email: String,
     pub ist_admin: bool,
