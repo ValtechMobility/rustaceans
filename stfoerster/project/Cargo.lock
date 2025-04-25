@@ -1028,6 +1028,8 @@ dependencies = [
  "log",
  "rand",
  "rustyline",
+ "serde",
+ "serde_json",
  "shell-words",
  "tokio",
 ]

@@ -6,6 +6,7 @@ use shell_words;
 use std::collections::HashMap;
 
 pub mod math;
+pub mod dto;
 
 pub fn prt_red(txt: &str) {
     println!("\x1b[1;{}m{}\x1b[0m", 31, txt);
