@@ -69,3 +69,16 @@ docker remove nats-server
 erst ```./server``` für NATS samt netzwerk, dann ```./run -nt``` und in der cmd dann ```cargo run```
 
 nur tests laufen lassen ohne NATS, etc. ```./run -r```
+
+### nats in docker
+
+```docker run -it --rm synadia/nats-box```
+
+nats pub -s nats://myuser:mypassword@34.78.28.109:30222 test "hello von Stephan"
+
+curl nats://34.78.28.109:30222
+
+### dtos in rust
+
+
+ 
